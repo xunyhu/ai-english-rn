@@ -1,0 +1,17 @@
+export const CHAT_COPY = {
+  headerTitle: 'AI Tutor',
+  headerSubtitle: 'Practice English with instant feedback',
+  inputPlaceholder: 'Message your AI tutor…',
+  sendLabel: 'Send',
+  emptyTitle: 'Start a conversation',
+  emptyDescription: 'Ask anything in English. You’ll get a reply, translation, grammar tips, and key words.',
+  grammarLabel: 'Grammar',
+  vocabularyLabel: 'Key vocabulary',
+  translationLabel: 'Translation',
+  streamingLabel: 'Thinking…',
+  errorDismissLabel: 'Dismiss',
+  playAudioLabel: 'Play audio',
+  playingAudioLabel: 'Playing…',
+  loadingAudioLabel: 'Loading audio…',
+  replayAudioLabel: 'Replay',
+} as const;

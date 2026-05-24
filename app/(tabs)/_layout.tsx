@@ -1,67 +1,80 @@
-import { SymbolView } from 'expo-symbols';
-import { Link, Tabs } from 'expo-router';
-import { Platform, Pressable } from 'react-native';
+import { Tabs } from 'expo-router';
+import { Platform } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { TabBarIcon } from '@/components/TabBarIcon';
+import { theme } from '@/constants/theme';
+
+const TAB_ICONS = {
+  index: { ios: 'house.fill', android: 'home', web: 'home' },
+  chat: { ios: 'bubble.left.and.bubble.right', android: 'chat', web: 'chat' },
+  shadowing: { ios: 'waveform', android: 'graphic_eq', web: 'graphic_eq' },
+  interview: { ios: 'person.2', android: 'groups', web: 'groups' },
+  profile: { ios: 'person.crop.circle', android: 'person', web: 'person' },
+} as const;
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: false,
+        tabBarActiveTintColor: theme.tabBar.active,
+        tabBarInactiveTintColor: theme.tabBar.inactive,
+        tabBarStyle: {
+          backgroundColor: theme.tabBar.background,
+          borderTopColor: theme.tabBar.border,
+          borderTopWidth: 1,
+          height: Platform.OS === 'ios' ? 84 : 60,
+          paddingTop: 6,
+          paddingBottom: Platform.OS === 'ios' ? 24 : 8,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '500',
+          marginTop: 2,
+        },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
+          title: 'Home',
           tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
-                {({ pressed }) => (
-                  <SymbolView
-                    name={{ ios: 'info.circle', android: 'info', web: 'info' }}
-                    size={25}
-                    tintColor={Colors[colorScheme].text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+            <TabBarIcon color={color} name={TAB_ICONS.index} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="chat"
         options={{
-          title: 'Tab Two',
+          title: 'Chat',
           tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
+            <TabBarIcon color={color} name={TAB_ICONS.chat} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="shadowing"
+        options={{
+          title: 'Shadowing',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name={TAB_ICONS.shadowing} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="interview"
+        options={{
+          title: 'Interview',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name={TAB_ICONS.interview} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name={TAB_ICONS.profile} />
           ),
         }}
       />

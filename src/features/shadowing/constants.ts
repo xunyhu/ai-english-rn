@@ -1,0 +1,18 @@
+export const SHADOWING_COPY = {
+  headerTitle: 'Shadowing',
+  headerSubtitle: 'Listen, repeat, and improve your pronunciation',
+  sentenceLabel: 'Repeat this sentence',
+  playLabel: 'Listen',
+  playingLabel: 'Playing…',
+  loadingAudioLabel: 'Loading…',
+  recordLabel: 'Record',
+  recordingLabel: 'Stop',
+  evaluatingLabel: 'Analyzing…',
+  resultTitle: 'Your result',
+  accuracyLabel: 'Accuracy',
+  feedbackLabel: 'Feedback',
+  nextSentenceLabel: 'Next sentence',
+  tryAgainLabel: 'Try again',
+  waveHint: 'Listen first, then record your voice',
+  streamingLabel: 'Loading…',
+} as const;
